@@ -1,0 +1,20 @@
+{% extends 'class_based_view/layout.html' %}
+{% block title %}
+    Delete
+{% endblock title %}
+{% block content %}
+<br><br>
+<div class="container">
+    <div class="card">
+        <h5 class="card-header">Delete Musician</h5>
+        <div class="card-body">
+            <h3>Are you sure you want to delete {{musician.first_name}} {{musician.last_name}}</h3>
+            <form method="POST">
+            {% csrf_token %}
+                <input type="submit" name="submit" value="Delete" class="btn btn-danger btn-sm">
+                <a href="{% url 'crud_app:musician_details' pk=musician.id %}" class="btn btn-info btn-sm">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

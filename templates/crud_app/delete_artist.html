@@ -1,0 +1,28 @@
+{% extends 'crud_app/layout.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <br><br>
+    <div class="container">
+        <div class="card">
+            <h5 class="card-header">{{title}}</h5>
+            <div class="card-body">
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
+            <script>
+                swal({
+                    title: " ",
+                    text: "{{delete_msg}}",
+                    type: "success"
+                }).then(function() {
+                    window.location.href = "http://127.0.0.1:8000/";
+                });
+            </script>
+{% endblock %}
+
+    
+
+

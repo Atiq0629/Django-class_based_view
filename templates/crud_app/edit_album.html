@@ -1,0 +1,25 @@
+{% extends 'crud_app/layout.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <br><br>
+    <div class="container">
+        <div class="card">
+            <h5 class="card-header">{{title}}</h5>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                     <div class="col-4">
+                        {{edit_album|crispy }}
+                     </div>
+                    <input type="submit" class="btn btn-primary btn-sm" name="submit" value="Update">
+                    <a href="{% url 'crud_app:delete_album' album_id=album_id %}" class="btn btn-danger btn-sm" onclick="return confirm('Delete This Album?')">Delete</a>
+                    <a href="{% url 'crud_app:album_list' artist_id=album_info.artist.id %}" class="btn btn-warning btn-sm">Back</a>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+    
+
+

@@ -1,0 +1,56 @@
+{% extends 'crud_app/layout.html' %}
+
+{% block content %}
+<br><br>
+    <div class="container">
+        <div class="card">
+            <h5 class="card-header">{{title}}</h5>
+            <div class="card-body">
+                <h5>Artist Name: {{artist_info.first_name}} {{artist_info.last_name}}</h5>
+                <h5>Instrument: {{artist_info.instrument}}</h5>
+                <h5>Rating: {{artist_rating.num_stars__avg}}</h5>
+                <br>
+                    {% if messages %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>Hey!</strong> {% for msg in messages %}
+                                {{msg}}
+                            {% endfor %} 
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    {% endif %}
+                <br>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Album Name</th>
+                            <th>Release Date</th>
+                            <th>Rating</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if album_list %}
+                            {% for album in album_list %}
+                            <tr>
+                                <td>{{album.name}}</td>
+                                <td>{{album.release_date}}</td>
+                                <td>{{album.num_stars}}</td>
+                                <td><a href="{% url 'crud_app:edit_album' album_id=album.id %}" class="btn btn-warning btn-sm">Edit</a></td>
+                            </tr>   
+                            {% endfor %}
+                        {% else %}
+                        <h4>No Data Found</h4>
+                        {% endif %}
+                    </tbody>
+                </table>
+                <br>
+                <a href="{% url 'crud_app:index' %}" class="btn btn-danger">Back</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+    
+
+

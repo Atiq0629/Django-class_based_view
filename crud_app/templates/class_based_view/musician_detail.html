@@ -1,0 +1,28 @@
+{% extends 'class_based_view/layout.html' %}
+{% block title %}
+    Details
+{% endblock title %}
+{% block content %}
+<br><br>
+<div class="container">
+    <div class="card">
+        <h5 class="card-header">Musician Details</h5>
+        <div class="card-body">
+            <h5><u>Musician Details</u></h5>
+            <p>{{musician.first_name}} {{musician.last_name}}</p>
+            <p>{{musician.instrument}}</p>
+            <br>
+            <h5><u>Album</u></h5>
+            <ul>
+                {% for album in musician.album_list.all %}
+                    <li>{{album.name}}</li>
+                {% endfor %}
+            </ul>
+            <br>
+            <a href="{% url 'crud_app:musician_update' pk=musician.id %}" class="btn btn-warning btn-sm">Update</a>
+            <a href="{% url 'crud_app:musician_delete' pk=musician.id %}" class="btn btn-danger btn-sm">Delete</a>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

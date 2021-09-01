@@ -1,0 +1,30 @@
+{% extends 'crud_app/layout.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <br><br>
+    <div class="container">
+        <div class="card">
+            <h5 class="card-header">{{title}}</h5>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                     <div class="col-4">
+                        {{edit_form|crispy }}
+                     </div>
+                    <input type="submit" class="btn btn-primary" name="submit" value="Update">
+                    <a href="{% url 'crud_app:index' %}" class="btn btn-danger">Back</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
+            <script>
+                {% for msg in messages %}
+                    swal("{{msg}}", " ", "success");
+                {% endfor %}
+            </script>
+{% endblock %}
+    
+
+
